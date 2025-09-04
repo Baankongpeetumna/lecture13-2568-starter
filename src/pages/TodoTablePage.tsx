@@ -13,12 +13,13 @@ import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import AddTaskModal from "../components/AddTaskModal";
 
+
 interface Task {
   id: string;
   title: string;
   description: string;
   isDone: boolean;
-  dueDate: Date | null;
+  dueDate: string | null;
   doneAt: Date | null;
 }
 
@@ -67,7 +68,7 @@ export default function TodoTablePage() {
   const addTask = (
     title: string,
     description: string,
-    dueDate: Date | null
+    dueDate: string | null
   ) => {
     const newTask: Task = {
       id: uuidv4(),
@@ -123,15 +124,19 @@ export default function TodoTablePage() {
         />
       </Table.Td>
       <Table.Td>
-        {task.dueDate ? task.dueDate.toLocaleDateString() : "-"}
+        {task.dueDate ? task.dueDate : "-"}
       </Table.Td>
       <Table.Td>{task.doneAt?.toLocaleDateString() || "-"}</Table.Td>
       <Table.Td>
         <ActionIcon color="red" onClick={() => deleteTask(task.id)}>
           <IconTrash size={16} />
         </ActionIcon>
+      
       </Table.Td>
+      <Table.Td><Text>dfdfdf</Text></Table.Td>
     </Table.Tr>
+    
+    
   ));
 
   return (
@@ -158,6 +163,7 @@ export default function TodoTablePage() {
               <Table.Th>Due Date</Table.Th>
               <Table.Th>Completed At</Table.Th>
               <Table.Th>Actions</Table.Th>
+              <Table.Th>penhere ari</Table.Th>
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>{rows}</Table.Tbody>
